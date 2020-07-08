@@ -1,26 +1,126 @@
 html(lang="en")
   head
+    
     title Time Table
     meta(charset = 'utf8')
     meta(name = 'description', content = 'Thời Khóa Biểu Quản Lí Cá Nhân')
     meta(name = 'keywords', content = 'Personal Manager Web')
     meta(name = 'author', content = 'Hieu Nguyen')
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700;900&display=swap",rel="stylesheet")
+
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin="anonymous")
-    link(rel="stylesheet", href="/css/common.css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-white
-      a.navbar-brand(href='#')
-        img(src='/image/logo.jpg', width='36', height='36', alt='', loading='lazy')
-      a.navbar-brand(href='#') Time Table
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a(class="navbar-brand" href="#")
+        img(src="/image/logo4.webp" width="38" height="38" alt="" loading="lazy")
+      a.navbar-brand(href='/')
+        span(class= "text-danger font-weight-bold") TIMETABLE
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
+        ul.navbar-nav
           li.nav-item.active
-            a.nav-link(href='#')| Home 
+            a.nav-link.font-weight-bolder.text-secondary(href='/')| Home 
               span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='#') Link
+          li.nav-item.active
+            a.nav-link.font-weight-bolder.text-secondary(href='/timetable')| TimeTable 
+              span.sr-only (current)
+          li.nav-item.active
+            .btn-group
+               button.music-btn.btn-light.btn.dropdown-toggle.font-weight-bolder.text-secondary(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
+                .dropdown-menu
+                  span.text-danger.small.dropdown-item( onclick="song1()")
+                    <i class="zmdi zmdi-audio"></i> Ăn sáng nha
+                  span.text-warning.small.dropdown-item( onclick="song2()") 
+                    <i class="zmdi zmdi-audio"></i> Hoa nở không màu
+                  span.text-success.small.dropdown-item( onclick="song3()")
+                    <i class="zmdi zmdi-audio"></i> Muốn nói với em
+                  span.text-primary.small.dropdown-item(onclick="song4()")
+                    <i class="zmdi zmdi-audio"></i> Sợ rằng em biết anh còn thương em
+          li.nav-item.active
+            a.nav-link.font-weight-bolder.text-secondary(href='/home')| Project 
+              span.sr-only (current)
+        .ml-auto.mr-3
+          if user
+            .dropdown.d-flex
+              img.m-1(src="/image/logo2.jpg", alt= "logo", width = "40", height="40", class="rounded-pill")
+              h6.ml-1.mt-3.font-weight-bolder= user.name
+              button.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+                dropdown
+              .dropdown-menu
+                a.dropdown-item(href='#')
+                  i(class="zmdi zmdi-account")
+                    span.ml-1 Account
+                a.dropdown-item(href='#')
+                  i(class="zmdi zmdi-settings")
+                    span.ml-1 Settings
+                a.dropdown-item(href='/auth/logout')
+                  i(class="zmdi zmdi-long-arrow-left")
+                    span.ml-1 Log out
+              a(href="https://www.facebook.com/profile.php?id=100008660230676")
+                i(class="zmdi zmdi-facebook-box sm-icons")
+                  
+              a(href="https://github.com/CBMNguyen?tab=repositories")
+                i(class="zmdi zmdi-github-box sm-icons")
+
+                audio#audio1.au(controls src='/audio/AnSangNha.mp3')
+                
+                audio#audio2.au(controls src='/audio/HoaNoKhongMau.mp3')
+
+                audio#audio3.au(controls src='/audio/MuonNoiVoiEm.mp3')
+    script.
+      function song1(){
+        var audio4 = document.getElementById('audio4');
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+        var audio3 = document.getElementById('audio3');
+        audio1.play();
+        audio2.pause();
+        audio3.pause();
+        audio4.pause();
+      }
+
+      function song2(){
+        var audio4 = document.getElementById('audio4');
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+        var audio3 = document.getElementById('audio3');
+        audio2.play();
+        audio4.pause();
+        audio1.pause();
+        audio3.pause();
+      }
+
+      function song3(){
+        var audio4 = document.getElementById('audio4');
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+        var audio3 = document.getElementById('audio3');
+        audio3.play();
+        audio4.pause();
+        audio1.pause();
+        audio2.pause();
+      }
+
+      function song4(){
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+        var audio3 = document.getElementById('audio3');
+        var audio4 = document.getElementById('audio4');
+        audio4.play();
+        audio3.pause();
+        audio1.pause();
+        audio2.pause();
+      }
+    .container
+      block content
+    script(src="/JS/jquery.js")
+
           

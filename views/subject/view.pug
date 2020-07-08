@@ -1,0 +1,25 @@
+extends ../layouts/common
+block content
+	h1.mt-5.mb-5.font-weight-bolder VIEW
+		span
+			a.btn.btn-primary.btn-sm.mb-2.ml-2(href="/subject/create/"+ subject.id) New Note
+	h3.text-center.font-weight-bolder= subject.name
+	ul
+		each news in subject.news
+			.w-100
+				li
+					.d-flex
+						h4.text-success= news.heading
+						.i.zmdi.zmdi-star.text-warning.ml-2.mt-2
+				span
+					ul.list-group.list-group-flush
+						each note in news.notes
+							li.list-group-item= note
+						li.list-group-item
+							if news.link
+								p.d-inline.text-dark.font-weight-bold Link: 
+								a.text-decoration-none(href="" + news.link)= news.link
+				h6.small.text-right.text-danger= news.date
+			
+				
+

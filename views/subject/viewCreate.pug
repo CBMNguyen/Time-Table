@@ -1,0 +1,13 @@
+extends ../layouts/common
+block content
+	h1.mt-5.mb-5.text-danger.text-center.font-weight-bold NOTE
+	form.mt-5.m-auto(class= "w-50",method = "POST")
+		if errors
+			each error in errors
+				.alert.alert-danger= error
+		.form-group
+			input.mb-3.form-control(name = "heading",type = "text", placeholder="Your Heading: ") 
+			textarea.form-control( name = "notes",rows = "10", placeholder="Your Note: ", outline = "none")
+			input.mt-3.form-control(name = "link",type = "text", placeholder="Your Link: ") 
+		button.btn.btn-primary.btn-block Thêm Vào
+		

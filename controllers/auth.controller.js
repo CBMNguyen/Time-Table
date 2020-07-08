@@ -18,41 +18,15 @@ module.exports.postSignup = (req, res) => {
 	res.redirect('/auth/login');
 }
 
-module.exports.postLogin = (req, res) => {
-	var email = req.body.email;
-	var password = md5(req.body.password);
-
-	var user = db.get('users').find({email: email}).value();
-
-	if(!user){
-		errors = [
-			'User is not exist.'
-		],
-		res.render('login/login', {
-			errors: errors,
-			values: req.body
-		})
-		return;
-	}
-
-	if(user.password !== password){
-		errors = [
-			'Wrong password.'
-		],
-		res.render('login/login', {
-			errors: errors,
-			values: req.body
-		})
-		return;
-	}
-
-	res.cookie('userId', user.id,{
-		signed: true
-	});
-	res.redirect('/home');
-}
-
-
 module.exports.login = (req, res) => {
 	res.render('login/login');
+}
+
+module.exports.logout = (req, res) => {
+	res.clearCookie('userId');
+	res.render('login/login');
+}
+
+module.exports.postLogin = (req, res) => {
+	res.redirect('/');
 }

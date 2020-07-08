@@ -1,0 +1,108 @@
+extends ../layouts/common
+block content
+	if calendar
+		if calendar.name.length > 1
+			if hours <=12
+				marquee(scrolldelay="65").mt-2
+					img(src='/image/animal.gif', width="4%") 
+					span.small.font-weight-bolder= "Sáng nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nha Hiếu."
+			else
+				marquee.mt-2
+					img(src='/image/animal.gif', width="4%") 
+					span.small.font-weight-bolder= "Chiều nay học môn: " + calendar.name[1] +" | Tiết: "+ calendar.hour[1]+" | Phòng: "+ calendar.room[1]+" | "+ "Nha Hiếu."
+		else if calendar.name.length === 1
+			marquee.mt-2
+				img(src='/image/animal.gif', width="4%") 
+				span.small.font-weight-bolder= "Hôm nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nhen Hiếu."
+		else
+			marquee.mt-2
+				img(src='/image/animal.gif', width="4%") 
+				span.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
+
+	form(action="/timetable/search", method="GET")
+		.text-center.mt-5
+			h4.mb-3.font-weight-bolder Thời khóa biểu
+			span.font-weight-bolder.mr-1 Học kì:
+			select(name="term").custom-select.custom-select-sm.select-sm
+				option(value='2', name="term") 2
+				option(value='hè', , name="term") hè
+			span.font-weight-bolder.ml-3.mr-1 - Năm học:
+			select(name="year").custom-select.custom-select-sm.select-m
+				option(value='2019-2020', name="year") 2019-2020
+			button(type="submit").btn.btn-sm.btn-primary.mb-1.ml-3 Xem
+	.table-responsive-xl
+		table.table
+			tr
+				th.text-center Thứ
+				th Mã HP
+				th.text-center Ký hiệu
+				th Tên học phần
+				th Tiết học
+				th Phòng
+				th Tuần học
+			each tt, index in timetables
+				if index === 0
+					tr 
+					each tkb, index in tt.tkb
+						if tkb.number === day
+							tr.alert.alert-success
+								td.text-center= tkb.number
+								td
+									each code in tkb.code
+										span= code
+										br
+								td.text-center
+									each sign in tkb.sign
+										span= sign
+										br
+								td
+									each name in tkb.name
+										span= name
+										br
+								td
+									each hour in tkb.hour
+										span= hour
+										br
+								td
+									each room in tkb.room
+										span= room
+										br
+								td
+									each week in tkb.week
+										span= week
+										br
+						else
+							tr
+								td.text-center= tkb.number
+								td
+									each code in tkb.code
+										span= code
+										br
+								td.text-center
+									each sign in tkb.sign
+										span= sign
+										br
+								td
+									each name in tkb.name
+										span= name
+										br
+								td
+									each hour in tkb.hour
+										span= hour
+										br
+								td
+									each room in tkb.room
+										span= room
+										br
+								td
+									each week in tkb.week
+										span= week
+										br
+
+
+
+
+			
+
+				
+			
