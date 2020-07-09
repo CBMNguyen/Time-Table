@@ -4,8 +4,8 @@ block content
 
 	audio#audio4.au(controls src='/audio/SREBAHYE.mp3' autoplay loop)
 
-	.d-flex
-		form.mt-4.mb-4.w-60.ml-5(action="/", method="GET")
+	.d-block.mt-3
+		form.w-100.m-auto(action="/", method="GET")
 			.text-center
 				span.font-weight-bolder.mr-1 Category:
 				select(name="category").custom-select.custom-select-sm.select-l
@@ -46,7 +46,7 @@ block content
 						
 				button.btn.btn-sm.btn-primary.mb-1.ml-3.mt-1 Search
 				
-		form.mt-5.mb-4.ml-auto.w-55(action = "/", method = "GET", class= "d-flex")
+		form.mt-3.mb-4.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
 			input#myInput.form-control(name = "search", placeholder="Search")
 
 	.table-responsive-sm
