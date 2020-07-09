@@ -20,12 +20,12 @@ block content
 				span.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
 	span
 			a.btn.btn-primary.btn-sm.mb-2.ml-2(href="/timetable") Back
-	form(action="/timetable/search", method="GET")
+	form(action="/timetable", method="GET")
 		.text-center.mt-5
 			h3.mb-5.font-weight-bolder Thời khóa biểu
 	.table-responsive-xl
-		table.table
-			tr
+		table.table.table-hover
+			tr.bg-light
 				th.text-center Thứ
 				th Mã HP
 				th.text-center Ký hiệu

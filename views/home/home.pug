@@ -9,19 +9,41 @@ block content
 			.text-center
 				span.font-weight-bolder.mr-1 Category:
 				select(name="category").custom-select.custom-select-sm.select-l
-					option(value='oneday') On Day Of Me
-					option(value='school') School
-					option(value='web') Web
+					if values.category
+						option.d-none(value= values.category)= values.category
+						option(value='OneDayOfMe') OneDayOfMe
+						option(value='school') School
+						option(value='web') web
+					else
+						option.d-none(value='school') School
+						option(value='OneDayOfMe') OneDayOfMe
+						option(value='school') School
+						option(value='web') web
 
 				span.font-weight-bolder.mr-1 Học kì:
 				select(name="term").custom-select.custom-select-sm.select-m
-					option(value='') none
-					option(value='2') 2
-					option(value='hè') hè
+					if values.term
+						option.d-none(value= values.term)= values.term
+						option(value='none') none
+						option(value='2') 2
+						option(value='hè') hè
+					else
+						option.d-none(value='2') 2
+						option(value='none') none
+						option(value='2') 2
+						option(value='hè') hè
+				
 
 				span.font-weight-bolder.ml-3.mr-1 - Năm học:
 				select(name="year").custom-select.custom-select-sm.select-l
-					option(value='2019-2020', name="year") 2019-2020
+					if values.year
+						option.d-none(value= values.year)= values.year
+						option(value='2019-2020') 2019-2020
+					else
+						option.d-none(value='2019-2020') 2019-2020
+						option(value='2019-2020') 2019-2020
+					
+						
 				button.btn.btn-sm.btn-primary.mb-1.ml-3.mt-1 Search
 				
 		form.mt-5.mb-4.ml-auto.w-55(action = "/", method = "GET", class= "d-flex")
@@ -29,20 +51,20 @@ block content
 
 	.table-responsive-sm
 		table.table.table-hover#myTable
-			tr.table-light
+			tr.bg-light
 				th.text-center STT
 				th Mã HP
 				th Tên Học Phần
 				th Tên Giáo Viên
 				th.text-center Ghi Chú
+			if subjects
+				each subject, index in subjects
+					tr 
+						td(class = "text-center")= index + 1
+						td= subject.mamon
+						td= subject.name
+						td= subject.gvname
 
-			each subject, index in subjects
-				tr 
-					td(class = "text-center")= index + 1
-					td= subject.mamon
-					td= subject.name
-					td= subject.gvname
-
-					td(class = "text-center")
-						a.anotification.text-decoration-none(href = "subject/"+ subject.id) View
-							span.mb(class="badge badge-danger rounded notification")= subject.amount
+						td(class = "text-center")
+							a.anotification.text-decoration-none(href = "subject/"+ subject.id) View
+								span.mb(class="badge badge-danger rounded notification")= subject.amount

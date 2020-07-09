@@ -29,8 +29,8 @@ module.exports.viewPostCreate = (req, res) => {
 	var id = req.params.id;
 
 	var today = new Date();
-	var time =today.getHours() +"h:"+ today.getMinutes()+"p";
-	var date = today.getDate() +"/"+ (today.getMonth()+ 1) +"/"+ today.getFullYear();
+	var time =today.getHours() +"h:"+ today.getMinutes()+"m";
+	var date = today.getDate() +"-"+ (today.getMonth()+ 1) +"-"+ today.getFullYear();
 
 	req.body.date = time + " " + date;
 	req.body.notes = req.body.notes.split('\r\n'||'\r\n\r\n'); 
@@ -42,4 +42,61 @@ module.exports.viewPostCreate = (req, res) => {
 
 	res.redirect('/subject/'+id);
 } 
+
+
+module.exports.remove = (req, res) => {
+	var id = req.params.id.split('+').slice(0,1).join('');
+	var date = req.params.id.split('+').slice(1).join('');
+
+	db.get('subject').find({id: id}).get('news').remove({date: date}).write();
+	var count = db.get('subject').find({id: id}).get('amount').value();
+				db.get('subject').find({id: id}).set('amount', count - 1).write();
+	res.redirect('/subject/'+ id); 
+}
+
+module.exports.edit = (req, res) => {
+	var id = req.params.id.split('+').slice(0,1).join('');
+	var date = req.params.id.split('+').slice(1).join('');
+
+	var value = db.get('subject').find({id: id}).get('news').find({date: date}).value();
+	var data={
+		heading: value.heading,
+		notes: value.notes.join('\r\n'||'\r\n\r\n'),
+		link: value.link
+	}
+
+	res.render('subject/viewCreate',{
+		data: data
+	});
+}
+
+module.exports.postEdit= (req, res)=>{
+	var today = new Date();
+	var time =today.getHours() +"h:"+ today.getMinutes()+"m";
+	var date = today.getDate() +"-"+ (today.getMonth()+ 1) +"-"+ today.getFullYear();
+
+	req.body.date ="Fixed: " + time + " " + date;
+	req.body.notes = req.body.notes.split('\r\n'||'\r\n\r\n');
+
+	var id = req.params.id.split('+').slice(0,1).join('');
+	var date = req.params.id.split('+').slice(1).join('');
+	db.get('subject').find({id: id}).get('news').find({date: date})
+	.set('heading', req.body.heading)
+	.set('notes',req.body.notes)
+	.set('link', req.body.link)
+	.set('date', req.body.date)
+	.write();
+	res.redirect('/subject/'+id);
+}
+
+
+
+
+
+
+
+
+
+
+
 
