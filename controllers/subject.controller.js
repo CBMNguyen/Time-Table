@@ -59,14 +59,11 @@ module.exports.edit = (req, res) => {
 	var date = req.params.id.split('+').slice(1).join('');
 
 	var value = db.get('subject').find({id: id}).get('news').find({date: date}).value();
-	var data={
-		heading: value.heading,
-		notes: value.notes.join('\r\n'||'\r\n\r\n'),
-		link: value.link
-	}
 
 	res.render('subject/viewCreate',{
-		data: data
+		heading: (value.heading) ? (value.heading) : "",
+		notes: (value.notes) ? value.notes.join('\r\n'||'\r\n\r\n') : "",
+		link: value.link ? value.link : ""
 	});
 }
 
@@ -88,6 +85,23 @@ module.exports.postEdit= (req, res)=>{
 	.write();
 	res.redirect('/subject/'+id);
 }
+
+module.exports.hacknaoViewCreate = (req, res)=>{
+	res.render('subject/hacknaoCreate');
+}
+
+module.exports.hacknaoCreate = (req, res)=>{
+	db.get('hacknao').push(req.body).write();
+	res.redirect('/subject/english/hacknao1500');
+}
+
+module.exports.hacknao = (req, res)=>{
+	var value = db.get('hacknao').value();
+	res.render('subject/hacknaoView',{
+		values: value
+	});
+}
+
 
 
 

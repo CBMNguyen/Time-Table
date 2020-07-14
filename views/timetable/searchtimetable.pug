@@ -5,19 +5,19 @@ block content
 			if hours <=12
 				marquee(scrolldelay="65").mt-2
 					img(src='/image/animal.gif', width="4%") 
-					span.small.font-weight-bolder= "Sáng nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nha Hiếu."
+					cite.small.font-weight-bolder= "Sáng nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nha Hiếu."
 			else
 				marquee.mt-2
 					img(src='/image/animal.gif', width="4%") 
-					span.small.font-weight-bolder= "Chiều nay học môn: " + calendar.name[1] +" | Tiết: "+ calendar.hour[1]+" | Phòng: "+ calendar.room[1]+" | "+ "Nha Hiếu."
+					cite.small.font-weight-bolder= "Chiều nay học môn: " + calendar.name[1] +" | Tiết: "+ calendar.hour[1]+" | Phòng: "+ calendar.room[1]+" | "+ "Nha Hiếu."
 		else if calendar.name.length === 1
 			marquee.mt-2
 				img(src='/image/animal.gif', width="4%") 
-				span.small.font-weight-bolder= "Hôm nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nhen Hiếu."
+				cite.small.font-weight-bolder= "Hôm nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nhen Hiếu."
 		else
 			marquee.mt-2
 				img(src='/image/animal.gif', width="4%") 
-				span.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
+				cite.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
 	span
 			a.btn.btn-primary.btn-sm.mb-2.ml-2(href="/timetable") Back
 	form(action="/timetable", method="GET")
@@ -40,54 +40,54 @@ block content
 						td.text-center= tkb.number
 						td
 							each code in tkb.code
-								span= code
+								cite= code
 								br
 						td.text-center
 							each sign in tkb.sign
-								span= sign
+								cite= sign
 								br
 						td
 							each name in tkb.name
-								span= name
+								cite= name
 								br
 						td
 							each hour in tkb.hour
-								span= hour
+								cite= hour
 								br
 						td
 							each room in tkb.room
-								span= room
+								cite= room
 								br
 						td
 							each week in tkb.week
-								span= week
+								cite= week
 								br
 				else
 					tr
 						td.text-center= tkb.number
 						td
 							each code in tkb.code
-								span= code
+								cite= code
 								br
 						td.text-center
 							each sign in tkb.sign
-								span= sign
+								cite= sign
 								br
 						td
 							each name in tkb.name
-								span= name
+								cite= name
 								br
 						td
 							each hour in tkb.hour
-								span= hour
+								cite= hour
 								br
 						td
 							each room in tkb.room
-								span= room
+								cite= room
 								br
 						td
 							each week in tkb.week
-								span= week
+								cite= week
 								br
 
 						

@@ -1,13 +1,86 @@
+/*=====================================================================*/
+/*=================================General=========================*/
+/*=====================================================================*/
+body{
+	background-image:url(https://images6.alphacoders.com/394/394367.jpg);
+	background-attachment: visibility;
+	background-position:0px 65px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+nav{
+	position: relative;
+	background-color: #d3dbff;
+}
+
+
+.title-logo{
+	color: #f00e70;
+}
+
 .sm-icons{
 	font-size: 2rem;
 	margin-left: 15px;
 	margin-top: 7px
 }
 
-nav{
+.fb-icons{
+	color: #0e7ff0;
+}
+
+.git-icons{
+	color: #2d3033;
+}
+
+.select-sm{
+	width: 5%;
+}
+
+.select-m{
+	width: 8%;
+}
+
+.select-l{
+	width: 10%;
+}
+/*=====================================================================*/
+/*=================================home=============================*/
+/*=====================================================================*/
+.body-home marquee{
+	color: red;
+}
+
+.body-home select{
+	background-color: #ffe0f7;
+	color: black;
+}
+
+.body-home .select-content{
+	color: white;
+}
+
+.body-home table .bg{
+	background-color: #bc4a9f;
+}
+
+.anotification{
 	position: relative;
 }
 
+.notification{
+	position: absolute;
+	top: -5px;
+	background-color: red;
+}
+
+.input:focus{
+	background-color: #d3dbff;
+	color: red;
+}
+
+
+/*==================================Audio==============================*/
 .audi{
 	position: absolute;
 	left: 50%;
@@ -21,32 +94,26 @@ nav{
 	display: none;
 }
 
-.imusic:hover #audio0{
-	opacity: 1;
+
+/*==========StepUp===========*/
+.form-hacknao{
+	max-width:  780px;
+	padding: 15px;
+	margin: auto;
 }
 
-.anotification{
+.hacknao-logo{
+	max-width: 250px;
+}
+
+.volumn-icons{
 	position: relative;
+	font-size: 150%;
+	transition: all 0.5s;
 }
 
-.notification{
-	position: absolute;
-	top: -5px;
-	background-color: red;
+.volumn-icons:hover{
+	color: #34baeb;
 }
 
-.music-btn{
-	outline: none;
-}
 
-.select-sm{
-	width: 5%;
-}
-
-.select-m{
-	width: 10%;
-}
-
-.select-l{
-	width: 15%;
-}

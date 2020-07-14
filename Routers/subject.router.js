@@ -18,4 +18,8 @@ Router.get('/remove/:id', controller.remove);
 Router.get('/edit/:id', controller.edit);
 Router.post('/edit/:id', controller.postEdit);
 
+Router.get('/english/hacknao1500', controller.hacknao);
+Router.get('/hacknao1500/create', controller.hacknaoViewCreate);
+Router.post('/hacknao1500/create', controller.hacknaoCreate);
+
 module.exports = Router;

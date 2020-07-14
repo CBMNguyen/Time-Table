@@ -1,0 +1,16 @@
+extends ../layouts/common
+block content
+	form.mt-5.form-hacknao(action="/subject/hacknao1500/create", method="POST")
+		h1.mt-5.mb-5.font-weight-bolder.text-center New Words
+		.d-flex.mb-3
+			input.form-control.ml-1(type= "text", name='unit',placeholder="Unit: ")
+
+			input.form-control.ml-1(type= "text", name='newwords',placeholder="Newwords: ") 	
+
+			input.form-control.ml-1(type= "text", name='spelling',placeholder="Spelling: ")
+
+			input.form-control.ml-1(type= "text", name='means',placeholder="Means: ")
+
+		input.form-control.w-50.m-auto(type= "text", name='source',placeholder="Source: ")
+		.d-flex.mt-3
+			button.btn.btn-success.m-auto.w-50 Send Up

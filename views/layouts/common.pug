@@ -17,11 +17,11 @@ html(lang="en")
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    nav.navbar.navbar-expand-lg.navbar-light
       a(class="navbar-brand" href="/")
         img(src="/image/logo4.webp" width="38" height="38" alt="" loading="lazy")
       a.navbar-brand(href='/')
-        span(class= "text-danger font-weight-bold") TIMETABLE
+        span(class= "title-logo font-weight-bold") TIMETABLE
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -34,16 +34,16 @@ html(lang="en")
               span.sr-only (current)
           li.nav-item.active
             .btn-group
-               button.music-btn.btn-light.btn.dropdown-toggle.font-weight-bolder.text-secondary(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
+               span.dropdown-toggle.font-weight-bolder.text-secondary.mt-2( data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
                 .dropdown-menu
-                  span.text-danger.small.dropdown-item( onclick="song1()")
-                    <i class="zmdi zmdi-audio"></i> Ăn sáng nha
-                  span.text-warning.small.dropdown-item( onclick="song2()") 
-                    <i class="zmdi zmdi-audio"></i> Hoa nở không màu
-                  span.text-success.small.dropdown-item( onclick="song3()")
-                    <i class="zmdi zmdi-audio"></i> Muốn nói với em
-                  span.text-primary.small.dropdown-item(onclick="song4()")
-                    <i class="zmdi zmdi-audio"></i> Sợ rằng em biết anh còn thương em
+                  span.text-danger.small.dropdown-item
+                    cite(onclick="play()")
+                      <i class="zmdi zmdi-audio"></i> Một cộng một lớn hơn hai
+                  audio#ado.au()
+
+          li.nav-item.active
+            a.nav-link.font-weight-bolder.text-secondary(href='/subject/english/hacknao1500')| HackNao 1500 
+              span.sr-only (current)
           li.nav-item.active
             a.nav-link.font-weight-bolder.text-secondary(href='#')| Project 
               span.sr-only (current)
@@ -52,7 +52,7 @@ html(lang="en")
             .dropdown.d-flex
               img.m-1(src="/image/logo2.jpg", alt= "logo", width = "40", height="40", class="rounded-pill")
               h6.ml-1.mt-3.font-weight-bolder= user.name
-              button.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+              span.dropdown-toggle(data-toggle='dropdown').mt-4
                 dropdown
               .dropdown-menu
                 a.dropdown-item(href='#')
@@ -65,62 +65,21 @@ html(lang="en")
                   i(class="zmdi zmdi-long-arrow-left")
                     span.ml-1 Log out
               a(href="https://www.facebook.com/profile.php?id=100008660230676")
-                i(class="zmdi zmdi-facebook-box sm-icons")
+                i(class="zmdi zmdi-facebook-box sm-icons fb-icons")
                   
               a(href="https://github.com/CBMNguyen?tab=repositories")
-                i(class="zmdi zmdi-github-box sm-icons")
-
-                audio#audio1.au(controls src='/audio/AnSangNha.mp3')
-                
-                audio#audio2.au(controls src='/audio/HoaNoKhongMau.mp3')
-
-                audio#audio3.au(controls src='/audio/MuonNoiVoiEm.mp3')
-    script.
-      function song1(){
-        var audio4 = document.getElementById('audio4');
-        var audio1 = document.getElementById('audio1');
-        var audio2 = document.getElementById('audio2');
-        var audio3 = document.getElementById('audio3');
-        audio1.play();
-        audio2.pause();
-        audio3.pause();
-        audio4.pause();
-      }
-
-      function song2(){
-        var audio4 = document.getElementById('audio4');
-        var audio1 = document.getElementById('audio1');
-        var audio2 = document.getElementById('audio2');
-        var audio3 = document.getElementById('audio3');
-        audio2.play();
-        audio4.pause();
-        audio1.pause();
-        audio3.pause();
-      }
-
-      function song3(){
-        var audio4 = document.getElementById('audio4');
-        var audio1 = document.getElementById('audio1');
-        var audio2 = document.getElementById('audio2');
-        var audio3 = document.getElementById('audio3');
-        audio3.play();
-        audio4.pause();
-        audio1.pause();
-        audio2.pause();
-      }
-
-      function song4(){
-        var audio1 = document.getElementById('audio1');
-        var audio2 = document.getElementById('audio2');
-        var audio3 = document.getElementById('audio3');
-        var audio4 = document.getElementById('audio4');
-        audio4.play();
-        audio3.pause();
-        audio1.pause();
-        audio2.pause();
-      }
+                i(class="zmdi zmdi-github-box sm-icons git-icons")
+ 
     .container
       block content
     script(src="/JS/jquery.js")
+    script.
+      function play(){
+        var audio = document.getElementById('ado');
+        var audio4 = document.getElementById('audio4');
+        audio.src="https://vnso-zn-10-tf-mp3-s1-zmp3.zadn.vn/a4798adee69a0fc4568b/1007181050156682488?authen=exp=1594804605~acl=/a4798adee69a0fc4568b/*~hmac=ea78be9b7d6f524c50a5b862e98a0844";
+        audio.play();
+        audio4.pause();
+      }
 
           

@@ -1,0 +1,37 @@
+extends ../layouts/common
+block content
+	.container-fluid.bg-white
+		.container
+			img.hacknao-logo(src="/image/logohacknao.png")
+			a.btn.btn-outline-warning.mt-4(href="/subject/hacknao1500/create") New Words
+			audio.au(id='audio')
+			.table-responsive-sm
+				form.mt-3.mb-4.w-100(action = "/", method = "GET", class= "d-flex")
+					input#myInput.form-control(name = "search", placeholder="Search")
+				table.table-sm.table.table-hover#myTable
+					tr.bg-light
+						th.text-center STT
+						th Words
+						th Spelling
+						th Means
+						th.text-center Sound
+					each value, index in values
+						tr
+							td.text-center
+								cite= index + 1
+							td
+								cite= value.newwords
+							td
+								cite= value.spelling
+							td
+								cite= value.means
+							td.text-center
+								span
+									i.volumn-icons(onclick="playAudio(this.id)", id=value.source).zmdi.zmdi-volume-up
+				script.
+					function playAudio(id){
+						var src = id; 
+						var audio = document.getElementById('audio');
+						audio.src= src;
+						audio.play();
+					}

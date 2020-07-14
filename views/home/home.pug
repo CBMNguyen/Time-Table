@@ -1,70 +1,126 @@
 extends ../layouts/common
 block content
-	a.mt-3.mt-5.font-weight-bolder(href = "/subject/create", class = "btn btn-primary") New Subject
+	.body-home
+		//- =====================================Marquee===============================
+		if calendar
+			if calendar.name.length > 1
+				if hours <=12
+					marquee(scrollamount="10").mt-2
+						img(src='/image/animal.gif', width="4%") 
+						cite.small.font-weight-bolder= "Sáng nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nha Hiếu."
+				else
+					marquee(scrollamount="10").mt-2
+						img(src='/image/animal.gif', width="4%") 
+						cite.small.font-weight-bolder= "Chiều nay học môn: " + calendar.name[1] +" | Tiết: "+ calendar.hour[1]+" | Phòng: "+ calendar.room[1]+" | "+ "Nha Hiếu."
+			else if calendar.name.length === 1
+				marquee(scrollamount="10").mt-2
+					img(src='/image/animal.gif', width="4%") 
+					cite.small.font-weight-bolder= "Hôm nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nhen Hiếu."
+			else
+				marquee(scrollamount="10").mt-2
+					img(src='/image/animal.gif', width="4%") 
+					cite.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
 
-	audio#audio4.au(controls src='/audio/SREBAHYE.mp3' autoplay loop)
+		//- ==============================================================================
+		
+		a.mt-3.mt-5.font-weight-bolder(href = "/subject/create", class = "btn btn-outline-warning") New Subject
 
-	.d-block.mt-3
-		form.w-100.m-auto(action="/", method="GET")
-			.text-center
-				span.font-weight-bolder.mr-1 Category:
-				select(name="category").custom-select.custom-select-sm.select-l
-					if values.category
-						option.d-none(value= values.category)= values.category
-						option(value='OneDayOfMe') OneDayOfMe
-						option(value='school') School
-						option(value='web') web
-					else
-						option.d-none(value='school') School
-						option(value='OneDayOfMe') OneDayOfMe
-						option(value='school') School
-						option(value='web') web
+		audio#audio4.au(controls src='/audio/DemDomDomVaEm.mp3' autoplay loop)
 
-				span.font-weight-bolder.mr-1 Học kì:
-				select(name="term").custom-select.custom-select-sm.select-m
-					if values.term
-						option.d-none(value= values.term)= values.term
-						option(value='none') none
-						option(value='2') 2
-						option(value='hè') hè
-					else
-						option.d-none(value='2') 2
-						option(value='none') none
-						option(value='2') 2
-						option(value='hè') hè
-				
+		.d-block.mt-3
+			form.m-auto(action="/", method="GET")
+				.text-center.select-content
+					span.font-weight-bolder.mr-1.ml-2 - Category:
+					select(name="category").custom-select.custom-select-sm.select-l
+						if values.category
+							option.d-none(value= values.category)= values.category
+							option(value='OneDayOfMe') OneDayOfMe
+							option(value='school') School
+							option(value='web') web
+						else
+							option.d-none(value='school') School
+							option(value='OneDayOfMe') OneDayOfMe
+							option(value='school') School
+							option(value='web') web
 
-				span.font-weight-bolder.ml-3.mr-1 - Năm học:
-				select(name="year").custom-select.custom-select-sm.select-l
-					if values.year
-						option.d-none(value= values.year)= values.year
-						option(value='2019-2020') 2019-2020
-					else
-						option.d-none(value='2019-2020') 2019-2020
-						option(value='2019-2020') 2019-2020
+					span.font-weight-bolder.mr-1.ml-2 - Term:
+					select(name="term").custom-select.custom-select-sm.select-m
+						if values.term
+							option.d-none(value= values.term)= values.term
+							option(value='none') none
+							option(value='2') 2
+							option(value='hè') hè
+						else
+							option.d-none(value='hè') hè
+							option(value='none') none
+							option(value='2') 2
+							option(value='hè') hè
 					
+
+					span.font-weight-bolder.ml-2.mr-1 - Year:
+					select(name="year").custom-select.custom-select-sm.select-l
+						if values.year
+							option.d-none(value= values.year)= values.year
+							option(value='2019-2020') 2019-2020
+						else
+							option.d-none(value='2019-2020') 2019-2020
+							option(value='2019-2020') 2019-2020
 						
-				button.btn.btn-sm.btn-primary.mb-1.ml-3.mt-1 Search
-				
-		form.mt-3.mb-4.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
-			input#myInput.form-control(name = "search", placeholder="Search")
+							
+					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1 Search
+					
+			form.mt-3.mb-4.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
+				input#myInput.form-control.input(name = "search", placeholder="Search")
 
-	.table-responsive-sm
-		table.table.table-hover#myTable
-			tr.bg-light
-				th.text-center STT
-				th Mã HP
-				th Tên Học Phần
-				th Tên Giáo Viên
-				th.text-center Ghi Chú
-			if subjects
-				each subject, index in subjects
-					tr 
-						td(class = "text-center")= index + 1
-						td= subject.mamon
-						td= subject.name
-						td= subject.gvname
+		if personal
+			.row
+				each psn, index in personal
+					.col-sm-6.col-md-6.col-lg-4
+						.card.mb-4(style='height: 380px')
+							img.card-img-top(src='/image/text'+(index+ 1)+'.png', alt='Card image', style='height: 380px')
+							.card-img-overlay
+								if day === psn.id
+									h4.d-flex.card-title.text-uppercase.text-primary= psn.number
+										span.ml-auto.spinner-grow.text-light(role='status')
+											span.sr-only
+								else
+									h4.card-title.text-uppercase.text-primary= psn.number
+								each content in psn.content
+									cite.text-light= content
+									br
 
-						td(class = "text-center")
-							a.anotification.text-decoration-none(href = "subject/"+ subject.id) View
-								span.mb(class="badge badge-danger rounded notification")= subject.amount
+		else
+			.table-responsive-sm
+				table.table#myTable.text-warning
+					tr.bg.text-dark
+						th.text-center STT
+						th Mã HP
+						th Tên Học Phần
+						th Tên Giáo Viên
+						th.text-center Ghi Chú
+					if subjects
+						each subject, index in subjects
+							tr 
+								td(class = "text-center")= index + 1
+								td
+									cite= subject.mamon
+								td
+									cite= subject.name
+								td
+									cite= subject.gvname
+
+								td(class = "text-center")
+									a.anotification.text-decoration-none(href = "subject/"+ subject.id)
+										cite.font-weight-bolder View
+										.mb(class="badge badge-danger rounded notification")= subject.amount
+
+		script.
+			function play(){
+				var audio = document.getElementById('ado');
+				var audio4 = document.getElementById('audio4');
+				audio.src="https://vnso-zn-10-tf-mp3-s1-zmp3.zadn.vn/a4798adee69a0fc4568b/1007181050156682488?authen=exp=1594804605~acl=/a4798adee69a0fc4568b/*~hmac=ea78be9b7d6f524c50a5b862e98a0844";
+				audio.play();
+				audio4.pause();
+			}
+		
+
