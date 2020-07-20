@@ -1,6 +1,5 @@
 html(lang="en")
   head
-    
     title Time Table
     meta(charset = 'utf8')
     meta(name = 'description', content = 'Thời Khóa Biểu Quản Lí Cá Nhân')
@@ -36,7 +35,7 @@ html(lang="en")
             .btn-group
                span.dropdown-toggle.font-weight-bolder.text-secondary.mt-2( data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
                 .dropdown-menu
-                  span.text-danger.small.dropdown-item
+                  span.text-warning.small.dropdown-item
                     cite(onclick="play()")
                       <i class="zmdi zmdi-audio"></i> Một cộng một lớn hơn hai
                   audio#ado.au()
@@ -70,8 +69,7 @@ html(lang="en")
               a(href="https://github.com/CBMNguyen?tab=repositories")
                 i(class="zmdi zmdi-github-box sm-icons git-icons")
  
-    .container
-      block content
+    block content
     script(src="/JS/jquery.js")
     script.
       function play(){

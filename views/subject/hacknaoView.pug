@@ -1,6 +1,6 @@
 extends ../layouts/common
 block content
-	.container-fluid.bg-white
+	.container-fluid-hacknao1500
 		.container
 			img.hacknao-logo(src="/image/logohacknao.png")
 			a.btn.btn-outline-warning.mt-4(href="/subject/hacknao1500/create") New Words
@@ -9,7 +9,7 @@ block content
 				form.mt-3.mb-4.w-100(action = "/", method = "GET", class= "d-flex")
 					input#myInput.form-control(name = "search", placeholder="Search")
 				table.table-sm.table.table-hover#myTable
-					tr.bg-light
+					tr.table-warning
 						th.text-center STT
 						th Words
 						th Spelling

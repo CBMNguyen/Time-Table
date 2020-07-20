@@ -17,7 +17,8 @@ module.exports.view = (req, res) => {
 	id = req.params.id;
 	var subject = db.get('subject').find({id: id}).value();
 	res.render('subject/view', {
-		subject: subject
+		subject: subject,
+		heading: subject.name
 	});
 }
 

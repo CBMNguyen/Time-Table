@@ -1,33 +1,33 @@
 extends ../layouts/common
 block content
-	h1.h1.font-weight-bold.mt-4.mb-4.text-uppercase.text-success.text-center New Subject 
+	.container-sub-create
+		.mt-5
+			form(action = "/subject/create", method = "POST", class = "m-auto")
+				if errors
+					each error in errors
+						.alert.alert-danger= error
+				.text-center.mb-3
+					span.font-weight-bolder.mr-1 Category:
+							select(name="category").custom-select.custom-select-sm
+								option(value='oneday') On Day Of Me
+								option(value='school') School
+								option(value='web') Web
+					span.font-weight-bolder.mr-1 Học kì:
+							select(name="term").custom-select.custom-select-sm
+								option(value='') none
+								option(value='2') 2
+								option(value='hè') hè
+					span.font-weight-bolder.ml-3.mr-1 - Năm học:
+							select(name="year").custom-select.custom-select-sm
+								option(value='2019-2020', name="year") 2019-2020
 
-	form.mb-4.mt-4(action = "/subject/create", method = "POST", class = "w-50 m-auto")
-		if errors
-			each error in errors
-				.alert.alert-danger= error
-		.text-center.mb-3
-			span.font-weight-bolder.mr-1 Category:
-					select(name="category").custom-select.custom-select-sm.select-l
-						option(value='oneday') On Day Of Me
-						option(value='school') School
-						option(value='web') Web
-			span.font-weight-bolder.mr-1 Học kì:
-					select(name="term").custom-select.custom-select-sm.select-m
-						option(value='') none
-						option(value='2') 2
-						option(value='hè') hè
-			span.font-weight-bolder.ml-3.mr-1 - Năm học:
-					select(name="year").custom-select.custom-select-sm.select-l
-						option(value='2019-2020', name="year") 2019-2020
-
-		.form-group
-			label(for = "name") Tên môn học: 
-			input#name.form-control(type = "text", name = "name", value = values ? values.name : '')
-		.form-group
-			label(for = "mamon") Mã môn học: 
-			input#mamon.form-control(type = "text", name = "mamon", value = values ? values.mamon : '')
-		.form-group
-			label(for = "gvname") Tên giáo viên: 
-			input#gvname.form-control(type = "text", name = "gvname", value = values ? values.gvname : '')
-		button.btn.btn-primary.w-100 Thêm
+				.form-group
+					label(for = "name") Tên môn học: 
+					input#name.form-control(type = "text", name = "name", value = values ? values.name : '')
+				.form-group
+					label(for = "mamon") Mã môn học: 
+					input#mamon.form-control(type = "text", name = "mamon", value = values ? values.mamon : '')
+				.form-group
+					label(for = "gvname") Tên giáo viên: 
+					input#gvname.form-control(type = "text", name = "gvname", value = values ? values.gvname : '')
+				button.btn.btn-outline-light.w-100 Thêm

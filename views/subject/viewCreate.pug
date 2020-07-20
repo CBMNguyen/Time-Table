@@ -1,6 +1,7 @@
 extends ../layouts/common
 block content
-	h1.mt-5.mb-5.text-danger.text-center.font-weight-bold NOTE
+	
+	h1.mb-5.text-light.text-center.font-weight-bold NOTE
 	form.mt-5.m-auto(class= "w-50",method = "POST")
 		if errors
 			each error in errors
@@ -9,5 +10,5 @@ block content
 			input.mb-3.form-control(name = "heading",type = "text", value= (heading) ? heading : "", placeholder="Heading: ") 
 			textarea.form-control( name = "notes",rows = "10")= (notes) ? notes : "Content:"
 			input.mt-3.form-control(name = "link",type = "text", value= (link) ? link : "",placeholder="Link: ") 
-		button.btn.btn-primary.btn-block Thêm Vào
-		
+		button.btn.btn-warning.btn-block Add
+			

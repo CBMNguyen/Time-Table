@@ -1,29 +1,31 @@
 extends ../layouts/common
 block content
-	.body-home
+	.container-home#home
 		//- =====================================Marquee===============================
 		if calendar
 			if calendar.name.length > 1
 				if hours <=12
-					marquee(scrollamount="10").mt-2
+					marquee(scrollamount="15").mt-2
 						img(src='/image/animal.gif', width="4%") 
 						cite.small.font-weight-bolder= "Sáng nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nha Hiếu."
 				else
-					marquee(scrollamount="10").mt-2
+					marquee(scrollamount="15").mt-2
 						img(src='/image/animal.gif', width="4%") 
 						cite.small.font-weight-bolder= "Chiều nay học môn: " + calendar.name[1] +" | Tiết: "+ calendar.hour[1]+" | Phòng: "+ calendar.room[1]+" | "+ "Nha Hiếu."
 			else if calendar.name.length === 1
-				marquee(scrollamount="10").mt-2
+				marquee(scrollamount="15").mt-2
 					img(src='/image/animal.gif', width="4%") 
 					cite.small.font-weight-bolder= "Hôm nay học môn: " + calendar.name[0] +" | Tiết: "+ calendar.hour[0]+" | Phòng: "+ calendar.room[0]+" | "+ "Nhen Hiếu."
 			else
-				marquee(scrollamount="10").mt-2
+				marquee(scrollamount="15").mt-2
 					img(src='/image/animal.gif', width="4%") 
 					cite.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
 
 		//- ==============================================================================
-		
-		a.mt-3.mt-5.font-weight-bolder(href = "/subject/create", class = "btn btn-outline-warning") New Subject
+		a#img(href="#", onclick="light()")
+			img(src="https://media2.giphy.com/media/BCgbjF9Y41UgGEam5O/giphy.gif").ml-auto.rounded-pill.fixed-top.light-image
+		a.font-weight-bolder(href = "/subject/create", class = "btn btn-outline-danger") New Subject
+			i.zmdi.zmdi-sun.ml-1.text-warning
 
 		audio#audio4.au(controls src='/audio/DemDomDomVaEm.mp3' autoplay loop)
 
@@ -66,9 +68,11 @@ block content
 							option.d-none(value='2019-2020') 2019-2020
 							option(value='2019-2020') 2019-2020
 						
-							
-					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1 Search
-					
+								
+					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1 
+						i.zmdi.zmdi-search 
+						span.ml-1 Search
+
 			form.mt-3.mb-4.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
 				input#myInput.form-control.input(name = "search", placeholder="Search")
 
@@ -115,6 +119,12 @@ block content
 										.mb(class="badge badge-danger rounded notification")= subject.amount
 
 		script.
+			function light(){
+				var home = document.getElementById('home');
+				var img = document.getElementById('img');
+				home.style.backgroundImage="url('https://i.pinimg.com/originals/fd/40/b1/fd40b13250f1677d2b0d062f6cb0b908.jpg')";
+				img.style.display="none";
+			}
 			function play(){
 				var audio = document.getElementById('ado');
 				var audio4 = document.getElementById('audio4');
@@ -122,5 +132,6 @@ block content
 				audio.play();
 				audio4.pause();
 			}
+	
 		
 
