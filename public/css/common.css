@@ -55,10 +55,14 @@ nav{
 	background-attachment: visibility;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100vh
+	height: 91vh
 }
 .container-home marquee{
 	color: lavender;
+}
+
+.iframe{
+	display: none;
 }
 
 .container-home select{
@@ -152,7 +156,7 @@ nav{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	height: 90%;
+	height: 92%;
 }
 
 .container table{

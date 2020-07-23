@@ -25,13 +25,13 @@ block content
 		a#img(href="#", onclick="light()")
 			img(src="https://media2.giphy.com/media/BCgbjF9Y41UgGEam5O/giphy.gif").ml-auto.rounded-pill.fixed-top.light-image
 		a.font-weight-bolder(href = "/subject/create", class = "btn btn-outline-danger") New Subject
-			i.zmdi.zmdi-sun.ml-1.text-warning
+		a.font-weight-bolder.ml-2(href = "#", class = "btn btn-outline-primary", onclick="QLDT()") QLDT - CTU
 
 		audio#audio4.au(controls src='/audio/DemDomDomVaEm.mp3' autoplay loop)
 
 		.d-block.mt-3
 			form.m-auto(action="/", method="GET")
-				.text-center.select-content
+				.text-center.select-content.mb-2
 					span.font-weight-bolder.mr-1.ml-2 - Category:
 					select(name="category").custom-select.custom-select-sm.select-l
 						if values.category
@@ -69,62 +69,82 @@ block content
 							option(value='2019-2020') 2019-2020
 						
 								
-					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1 
+					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1
 						i.zmdi.zmdi-search 
 						span.ml-1 Search
-
-			form.mt-3.mb-4.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
+		.iframe#iframe
+			iframe.iframe.d-block.m-auto(src="https://htql.ctu.edu.vn/htql/login.php", width="1140px", height="510px")
+		#search
+			form.mt-3.ml-auto.w-100(action = "/", method = "GET", class= "d-flex")
 				input#myInput.form-control.input(name = "search", placeholder="Search")
+		#list
+			if personal
+				.row
+					each psn, index in personal
+						.col-sm-6.col-md-6.col-lg-4
+							.card.mb-4(style='height: 380px')
+								img.card-img-top(src='/image/text'+(index+ 1)+'.png', alt='Card image', style='height: 380px')
+								.card-img-overlay
+									if day === psn.id
+										h4.d-flex.card-title.text-uppercase.text-primary= psn.number
+											span.ml-auto.spinner-grow.text-light(role='status')
+												span.sr-only
+									else
+										h4.card-title.text-uppercase.text-primary= psn.number
+									each content in psn.content
+										cite.text-light= content
+										br
 
-		if personal
-			.row
-				each psn, index in personal
-					.col-sm-6.col-md-6.col-lg-4
-						.card.mb-4(style='height: 380px')
-							img.card-img-top(src='/image/text'+(index+ 1)+'.png', alt='Card image', style='height: 380px')
-							.card-img-overlay
-								if day === psn.id
-									h4.d-flex.card-title.text-uppercase.text-primary= psn.number
-										span.ml-auto.spinner-grow.text-light(role='status')
-											span.sr-only
-								else
-									h4.card-title.text-uppercase.text-primary= psn.number
-								each content in psn.content
-									cite.text-light= content
-									br
+			else
+				.table-responsive-sm
+					table.table#myTable.text-warning
+						tr.bg.text-dark
+							th.text-center STT
+							th Mã HP
+							th Tên Học Phần
+							th Tên Giáo Viên
+							th.text-center Ghi Chú
+						if subjects
+							each subject, index in subjects
+								tr 
+									td(class = "text-center")= index + 1
+									td
+										cite= subject.mamon
+									td
+										cite= subject.name
+									td
+										cite= subject.gvname
 
-		else
-			.table-responsive-sm
-				table.table#myTable.text-warning
-					tr.bg.text-dark
-						th.text-center STT
-						th Mã HP
-						th Tên Học Phần
-						th Tên Giáo Viên
-						th.text-center Ghi Chú
-					if subjects
-						each subject, index in subjects
-							tr 
-								td(class = "text-center")= index + 1
-								td
-									cite= subject.mamon
-								td
-									cite= subject.name
-								td
-									cite= subject.gvname
-
-								td(class = "text-center")
-									a.anotification.text-decoration-none(href = "subject/"+ subject.id)
-										cite.font-weight-bolder View
-										.mb(class="badge badge-danger rounded notification")= subject.amount
+									td(class = "text-center")
+										a.anotification.text-decoration-none(href = "subject/"+ subject.id)
+											cite.font-weight-bolder View
+											.mb(class="badge badge-danger rounded notification")= subject.amount
 
 		script.
+			
 			function light(){
 				var home = document.getElementById('home');
 				var img = document.getElementById('img');
 				home.style.backgroundImage="url('https://i.pinimg.com/originals/fd/40/b1/fd40b13250f1677d2b0d062f6cb0b908.jpg')";
 				img.style.display="none";
 			}
+				var count = 0;
+			function QLDT(){
+				count = count + 1;
+				var iframe = document.getElementById('iframe');
+				var list = document.getElementById('list');
+				var search = document.getElementById('search');
+				if(count % 2 !== 0){
+					iframe.style.display= "block";
+					list.style.display= "none";
+					search.style.display= "none";
+				}else{
+					iframe.style.display= "none";
+					list.style.display= "block";
+					search.style.display= "block";
+				}
+			}
+
 			function play(){
 				var audio = document.getElementById('ado');
 				var audio4 = document.getElementById('audio4');

@@ -35,7 +35,7 @@ html(lang="en")
             .btn-group
                span.dropdown-toggle.font-weight-bolder.text-secondary.mt-2( data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
                 .dropdown-menu
-                  span.text-warning.small.dropdown-item
+                  span.text-warning.small.dropdown-item.hover
                     cite(onclick="play()")
                       <i class="zmdi zmdi-audio"></i> Một cộng một lớn hơn hai
                   audio#ado.au()
@@ -51,7 +51,7 @@ html(lang="en")
             .dropdown.d-flex
               img.m-1(src="/image/logo2.jpg", alt= "logo", width = "40", height="40", class="rounded-pill")
               h6.ml-1.mt-3.font-weight-bolder= user.name
-              span.dropdown-toggle(data-toggle='dropdown').mt-4
+              span.dropdown-toggle(data-toggle='dropdown')
                 dropdown
               .dropdown-menu
                 a.dropdown-item(href='#')
@@ -63,10 +63,10 @@ html(lang="en")
                 a.dropdown-item(href='/auth/logout')
                   i(class="zmdi zmdi-long-arrow-left")
                     span.ml-1 Log out
-              a(href="https://www.facebook.com/profile.php?id=100008660230676")
+              a(href="https://www.facebook.com/profile.php?id=100008660230676", target="blank")
                 i(class="zmdi zmdi-facebook-box sm-icons fb-icons")
                   
-              a(href="https://github.com/CBMNguyen?tab=repositories")
+              a(href="https://github.com/CBMNguyen?tab=repositories", target="blank")
                 i(class="zmdi zmdi-github-box sm-icons git-icons")
  
     block content

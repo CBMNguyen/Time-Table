@@ -5,7 +5,7 @@ var db = require('../db');
 module.exports = (req, res, next) => {
 	var email = req.body.email;
 	var password = md5(req.body.password);
-
+    var errors = [];
 	var user = db.get('users').find({email: email}).value();
 
 	if(!user){
