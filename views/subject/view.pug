@@ -1,7 +1,7 @@
 extends ../layouts/common
 block content
 	.container-view
-		h2.p-5.font-weight-bolder.text-dark.text-center= heading
+		h2.p-5.font-weight-bolder.text-light.text-center= heading
 			span
 				a.btn.btn-warning.mb-2.ml-2(href="/subject/create/"+ subject.id) New Note
 		ul
@@ -22,7 +22,7 @@ block content
 						li.list-group-item
 							if news.link
 								a.text-decoration-none(href="" + news.link) Link Here (^-^)
-				h6.small.text-light.p-2.text-center= news.date
+				h6.small.text-danger.p-2.text-center= '<-- '+news.date+' -->'
 			
 				
 

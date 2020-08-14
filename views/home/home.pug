@@ -22,10 +22,10 @@ block content
 					cite.small.font-weight-bolder= "Hôm nay không học gì! Dành thời gian thư giản hoặc về thăm cha và em gái thôi." 
 
 		//- ==============================================================================
-		a#img(href="#", onclick="light()")
-			img(src="https://media2.giphy.com/media/BCgbjF9Y41UgGEam5O/giphy.gif").ml-auto.rounded-pill.fixed-top.light-image
-		a.font-weight-bolder(href = "/subject/create", class = "btn btn-outline-danger") New Subject
-		a.font-weight-bolder.ml-2(href = "#", class = "btn btn-outline-primary", onclick="QLDT()") QLDT - CTU
+		a#IMG(href="#")
+			img(src="https://media2.giphy.com/media/BCgbjF9Y41UgGEam5O/giphy.gif", title="Beta").ml-auto.rounded-pill.fixed-top.light-image
+		a#newSubject.font-weight-bolder(href = "#", class = "btn btn-outline-danger", title="Admin performs this function") New Subject
+		a#qldt.font-weight-bolder.ml-2(href = "#", class = "btn btn-outline-primary", title="Web Trường Đại Học Cần Thơ") QLDT - CTU
 
 		audio#audio4.au(controls src='/audio/DemDomDomVaEm.mp3' autoplay loop)
 
@@ -116,19 +116,30 @@ block content
 										cite= subject.gvname
 
 									td(class = "text-center")
-										a.anotification.text-decoration-none(href = "subject/"+ subject.id)
+										a.anotification.text-decoration-none(id = subject.id href = "#"+subject.id onclick="view(this.id)")
 											cite.font-weight-bolder View
 											.mb(class="badge badge-danger rounded notification")= subject.amount
-
-		script.
-			
+			#clock_vn_outer
+				#clock_vn
+					#hour_vn
+					#minute_vn
+					#second_vn
+        			
+        			
+		script. 
+			var imgClick = $('#IMG');
+			imgClick.on('click', light);
 			function light(){
 				var home = document.getElementById('home');
-				var img = document.getElementById('img');
+				var IMG = document.getElementById('IMG');
 				home.style.backgroundImage="url('https://i.pinimg.com/originals/fd/40/b1/fd40b13250f1677d2b0d062f6cb0b908.jpg')";
-				img.style.display="none";
+				IMG.style.display="none";
 			}
-				var count = 0;
+
+			var qldt = $('#qldt');
+			qldt.on("click", QLDT);
+			var count = 0;
+
 			function QLDT(){
 				count = count + 1;
 				var iframe = document.getElementById('iframe');
@@ -146,12 +157,31 @@ block content
 			}
 
 			function play(){
-				var audio = document.getElementById('ado');
-				var audio4 = document.getElementById('audio4');
-				audio.src="https://vnso-zn-10-tf-mp3-s1-zmp3.zadn.vn/a4798adee69a0fc4568b/1007181050156682488?authen=exp=1594804605~acl=/a4798adee69a0fc4568b/*~hmac=ea78be9b7d6f524c50a5b862e98a0844";
+				var audio = $('#ado');
+				var audio4 = $('#audio4');
+				audio.src="/audio/untitled.mp3";
 				audio.play();
 				audio4.pause();
 			}
+
+			function view(id){
+				if(localStorage.getItem('email') === "admin2000@gmail.com")
+					window.location.href=/subject/+id;
+				else alert('Admin performs this function');
+			}
+
+			var NewSubject = $('#newSubject')
+			if(localStorage.getItem('email') === "admin2000@gmail.com"){
+				NewSubject.on("click", function(){
+					window.location.href="/subject/create"
+				})
+			}else{
+				NewSubject.on("click", function(){
+					alert('Admin performs this function');
+				})
+			}
+
+
 	
 		
 

@@ -1,6 +1,42 @@
 /*=====================================================================*/
 /*=================================General=========================*/
 /*=====================================================================*/
+#clock_vn_outer{
+	position: relative;
+	overflow: hidden;
+	width: 100px;
+	height: 100px;
+	/*margin: auto;*/
+	margin-top: -3%;
+	left: 46%;
+}
+#clock_vn_outer div{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	margin: 0;
+	padding: 0;
+}
+#clock_vn{
+	background: url('/image/clock_white.png') no-repeat center;
+	background-size: cover;
+}
+#hour_vn{
+	background: url('/image/hour_white.png') no-repeat center;
+	background-size: cover;
+}
+#minute_vn{
+	background: url('/image/minute_white.png') no-repeat center;
+	background-size: cover;
+}
+#second_vn{
+	background: url('/image/second_white.png') no-repeat center;
+	background-size: cover;
+}
+
+/*=============================================================*/
+
+/*==============================================================*/
 body{
 	overflow-x: none;
 	overflow-y: none;
@@ -10,6 +46,10 @@ body{
 nav{
 	position: relative;
 	background-color: #d3dbff;
+}
+
+.username{
+	cursor: pointer;
 }
 
 .title-logo{
@@ -23,7 +63,12 @@ nav{
 }
 
 .fb-icons{
-	color: #0e7ff0;
+	color: #1936F5 ;
+	transition: all 0.3s;
+}
+
+.fb-icons:hover{
+	transform: scale(1.2);
 }
 
 .light-image{
@@ -32,8 +77,23 @@ nav{
 	margin-top: 10%;
 }
 
+.img-owner{
+	border: 2px solid lavender;
+	transition: all .2s
+}
+
+.img-owner:hover{
+	border: 2px solid #f5f5f5;
+	transform: scale(1.1);
+}
+
 .git-icons{
 	color: #2d3033;
+	transition: all 0.3s;
+}
+
+.git-icons:hover{
+	transform: scale(1.2);
 }
 
 .select-sm{
@@ -58,7 +118,7 @@ nav{
 	height: 91vh
 }
 .container-home marquee{
-	color: lavender;
+	color: greenyellow;
 }
 
 .iframe{
@@ -98,12 +158,11 @@ nav{
 /*================================home/View=============================*/
 /*=====================================================================*/
 .container-view{
-	background-image: url(https://thuthuatnhanh.com/wp-content/uploads/2020/01/hinh-nen-background-hoa-dep-don-gian.jpg);
+	background-color: transparent;
 	background-attachment: visibility;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	height: 90vh;
 }
 .container-view ul{
 	list-style: none;
@@ -147,7 +206,7 @@ nav{
 /*=========================================================================*/
 .container-fluid-table marquee{
 	color: #111d5e;
-	background-color: rgba(255,255,255,0.1);
+	background-color: rgba(255,255,255,0.2);
 }
 
 .container-fluid-table{

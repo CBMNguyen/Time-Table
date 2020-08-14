@@ -10,7 +10,7 @@ html(lang="en")
 		link(rel="stylesheet", href = "/css/login.css")
 	body
 
-		form.form-signing.mt-5(method = "POST", action = "/auth/login")
+		form.form-signing#form.mt-5(method = "POST", action = "/auth/login")
 			
 			if errors
 				each error in errors
@@ -18,13 +18,14 @@ html(lang="en")
 
 			.mb-4.text-center
 				img.mb-4.mt-5(src="/image/logo.jpg", width= "80", height = "80", class="rounded-pill")
-				h1(class="h2 mb-3 font-weight-normal") Login
-
+				h1.ml-4(class="h2 mb-3 font-weight-normal") Login
+					span
+						a#clear.btn.btn-light.text-danger.rounded-pill x
 			.form-label-group
 				input#email.mb-3(type = 'email', name = 'email', class="form-control", placeholder = "Email Adress:", value = values ? values.email : "")
 
 			.form-label-group
-				input.mb-3(type = 'password', name = 'password', class="form-control", placeholder = "Password:", value = values ? values.password : "")
+				input#password.mb-3(type = 'password', name = 'password', class="form-control", placeholder = "Password:", value = values ? values.password : "")
 				button.btn.btn-primary.btn-block.mt-3 Sign in
 				
 			p(class="mt-5 mb-3 text-muted text-center")
@@ -32,3 +33,32 @@ html(lang="en")
 				a.text-decoration-none(href="/auth/signup") Sign Up
 			p(class="text-center")
 				a.text-decoration-none(href="#") Forgot your password?
+		script.
+			var checkbox = document.getElementById('checkbox');
+			var email = document.getElementById('email');
+			var password = document.getElementById('password');
+			var clear = document.getElementById('clear');
+			var form = document.getElementById('form');
+			var emailContent = '';
+			var passwordContent = '';
+				
+				email.addEventListener('change', function(){
+					emailContent = email.value;
+					console.log(emailContent);
+					localStorage.setItem("email", emailContent);
+				});
+				password.addEventListener('change', function(){
+					passwordContent = password.value;
+					console.log(passwordContent);
+					localStorage.setItem("password", passwordContent);
+				});
+
+				clear.addEventListener('click', function(){
+					form.reset();
+					localStorage.removeItem("password");
+					localStorage.removeItem("email");
+				});
+		
+				email.value=localStorage.getItem('email');
+				password.value=localStorage.getItem('password');
+		

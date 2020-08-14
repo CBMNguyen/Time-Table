@@ -3,7 +3,7 @@ block content
 	.container-fluid-hacknao1500
 		.container
 			img.hacknao-logo(src="/image/logohacknao.png")
-			a.btn.btn-outline-warning.mt-4(href="/subject/hacknao1500/create") New Words
+			a#newWords.btn.btn-outline-warning.mt-4(href="#") New Words
 			audio.au(id='audio')
 			.table-responsive-sm
 				form.mt-3.mb-4.w-100(action = "/", method = "GET", class= "d-flex")
@@ -33,5 +33,17 @@ block content
 						var src = id; 
 						var audio = document.getElementById('audio');
 						audio.src= src;
+						console.log(src);
 						audio.play();
+					}
+
+					var newWords = $('#newWords')
+					if(localStorage.getItem('email') === "admin2000@gmail.com"){
+						newWords.on("click", function(){
+							window.location.href="/subject/hacknao1500/create"
+						})
+					}else{
+						newWords.on("click", function(){
+							alert('Admin performs this function');
+						})
 					}

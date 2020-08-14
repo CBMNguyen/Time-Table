@@ -10,7 +10,7 @@ html(lang="en")
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin="anonymous")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="/css/common.css">
-
+    <script src="/JS/o'clock.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -35,9 +35,18 @@ html(lang="en")
             .btn-group
                span.dropdown-toggle.font-weight-bolder.text-secondary.mt-2( data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Music
                 .dropdown-menu
+                  span.text-danger.small.dropdown-item.hover
+                    cite#untitled(onclick="play(this.id)")
+                      i.zmdi.zmdi-audio  Untitled
                   span.text-warning.small.dropdown-item.hover
-                    cite(onclick="play()")
-                      <i class="zmdi zmdi-audio"></i> Một cộng một lớn hơn hai
+                    cite#chacaidoseve(onclick="play(this.id)")
+                      i.zmdi.zmdi-audio  Chắc ai đó sẽ về
+                  span.text-success.small.dropdown-item.hover
+                    cite#lactroi(onclick="play(this.id)")
+                      i.zmdi.zmdi-audio  Lạc trôi
+                  span.text-primarye.small.dropdown-item.hover
+                    cite#amthambenem(onclick="play(this.id)")
+                      i.zmdi.zmdi-audio  Âm thầm bên em
                   audio#ado.au()
 
           li.nav-item.active
@@ -49,9 +58,13 @@ html(lang="en")
         .ml-auto.mr-3
           if user
             .dropdown.d-flex
-              img.m-1(src="/image/logo2.jpg", alt= "logo", width = "40", height="40", class="rounded-pill")
-              h6.ml-1.mt-3.font-weight-bolder= user.name
-              span.dropdown-toggle(data-toggle='dropdown')
+              if user === "ADMIN2000"
+                a(href="https://www.facebook.com/profile.php?id=100008660230676", target="_blank")
+                  img.img-owner.mt-1.mr-2(src="/image/logo2.jpg", alt= "logo", width = "40", height="40", class="rounded-pill")
+              else
+                a(href="#", target="_blank")
+                  img.img-owner.mt-1.mr-2(src="/image/icon.png", alt= "logo", width = "40", height="40", class="rounded-pill")  
+              .dropdown-toggle(data-toggle='dropdown').username.mt-2.font-weight-bolder= user
                 dropdown
               .dropdown-menu
                 a.dropdown-item(href='#')
@@ -61,7 +74,7 @@ html(lang="en")
                   i(class="zmdi zmdi-settings")
                     span.ml-1 Settings
                 a.dropdown-item(href='/auth/logout')
-                  i(class="zmdi zmdi-long-arrow-left")
+                  i(class="zmdi zmdi-power")
                     span.ml-1 Log out
               a(href="https://www.facebook.com/profile.php?id=100008660230676", target="blank")
                 i(class="zmdi zmdi-facebook-box sm-icons fb-icons")
@@ -72,10 +85,11 @@ html(lang="en")
     block content
     script(src="/JS/jquery.js")
     script.
-      function play(){
+      function play(id){
+        var song = id;
         var audio = document.getElementById('ado');
         var audio4 = document.getElementById('audio4');
-        audio.src="https://vnso-zn-10-tf-mp3-s1-zmp3.zadn.vn/a4798adee69a0fc4568b/1007181050156682488?authen=exp=1594804605~acl=/a4798adee69a0fc4568b/*~hmac=ea78be9b7d6f524c50a5b862e98a0844";
+        audio.src="/audio/"+song+".mp3";
         audio.play();
         audio4.pause();
       }
