@@ -3,8 +3,9 @@ module.exports = (req, res, next) =>{
 	
 	var userId = req.signedCookies.userId;
 	var user = db.get('users').find({id: userId}).value();
-
-	var name = user.email.split('@');
+	var name = [];
+	if(user)
+		name = user.email.split('@');
 
 	if(!userId){
 		res.redirect('/auth/login');
@@ -15,6 +16,7 @@ module.exports = (req, res, next) =>{
 		res.redirect('/auth/login');
 		return;
 	}
-	res.locals.user = name[0].toUpperCase();
+	if(name.length)
+		res.locals.user = name[0].toUpperCase();
 	next();
 }

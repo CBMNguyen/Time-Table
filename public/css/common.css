@@ -2,14 +2,13 @@
 /*=================================General=========================*/
 /*=====================================================================*/
 #clock_vn_outer{
-	position: relative;
+	position: fixed;
 	overflow: hidden;
 	width: 100px;
 	height: 100px;
-	/*margin: auto;*/
-	margin-top: -3%;
-	left: 46%;
-}
+	top: 84%;
+	right: 0px;
+	}
 #clock_vn_outer div{
 	position: absolute;
 	width: 100px;
@@ -186,6 +185,22 @@ nav{
 
 .container-view .i:hover{
 	transform: scale(1.3);
+}
+
+.Revert{
+	font-size: 5rem;
+	position: fixed;
+	top: 45%;
+	left: 3%;
+	color: greenyellow;
+}
+
+.Next{
+	font-size: 5rem;
+	position: fixed;
+	top: 45%;
+	right: 3%;
+	color: greenyellow;
 }
 /*==========================================================================*/
 /*================================Subject-Create========================*/

@@ -1,11 +1,11 @@
 extends ../layouts/common
 block content
 	.container-view
-		h2.p-5.font-weight-bolder.text-light.text-center= heading
+		h2.p-5.font-weight-bolder.text-light.text-center= subject.name
 			span
 				a.btn.btn-warning.mb-2.ml-2(href="/subject/create/"+ subject.id) New Note
 		ul
-			each news in subject.news
+			each news in News
 			
 				li.list
 					.d-flex
@@ -23,6 +23,10 @@ block content
 							if news.link
 								a.text-decoration-none(href="" + news.link) Link Here (^-^)
 				h6.small.text-danger.p-2.text-center= '<-- '+news.date+' -->'
+		a.Revert(href="/subject/"+id+"?page="+pageRevious, title="Revert")
+			i(class="zmdi zmdi-caret-left-circle")
+		a.Next(href="/subject/"+id+"?page="+pageNext, title="Next")
+			i(class="zmdi zmdi-caret-right-circle")
 			
 				
 

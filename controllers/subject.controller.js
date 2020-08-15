@@ -5,6 +5,7 @@ module.exports.create = (req, res) => {
 	res.render('subject/create');
 }
 
+
 module.exports.postCreate = (req, res) => {
 	req.body.id = shortid.generate();
 	req.body.news = [];
@@ -15,10 +16,35 @@ module.exports.postCreate = (req, res) => {
 
 module.exports.view = (req, res) => {
 	id = req.params.id;
+	var page = parseInt(req.query.page) || 1;
+	var perPage = 1;
+	var start = (page - 1) * perPage;
+	var end = page * perPage;
+
 	var subject = db.get('subject').find({id: id}).value();
+	var news = db.get('subject').find({id: id}).get("news").slice(start, end).value();
+
+	var pageRevious;
+		if(page === 1){
+			pageRevious =1;
+		}else{
+			pageRevious = page - 1;
+		}
+
+
+	var pageNext = 1;
+	if(page === db.get('subject').find({id: id}).get("news").value().length){
+		pageNext = db.get('subject').find({id: id}).get("news").value().length
+	}else if(db.get('subject').find({id: id}).get("news").value().length){
+		pageNext = page + 1;
+	}
+
 	res.render('subject/view', {
+		News: news,
 		subject: subject,
-		heading: subject.name
+		id: id,
+		pageRevious: pageRevious,
+		pageNext: pageNext
 	});
 }
 

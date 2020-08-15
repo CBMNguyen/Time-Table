@@ -23,7 +23,7 @@ app.use(cookieParser(process.env.SESSION_SECRETS));
 
 app.use('/auth', authRouter);
 app.use('/subject',loginMiddleWare, subjectRouter);
-app.use('/timetable', timetableRouter);
+app.use('/timetable',loginMiddleWare, timetableRouter);
 
 app.use('/', loginMiddleWare,homeRouter)
 app.listen(port, () => console.log('start server completed!'));

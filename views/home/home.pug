@@ -166,12 +166,12 @@ block content
 
 			function view(id){
 				if(localStorage.getItem('email') === "admin2000@gmail.com")
-					window.location.href=/subject/+id;
+				window.location.href=/subject/+id;
 				else alert('Admin performs this function');
 			}
 
 			var NewSubject = $('#newSubject')
-			if(localStorage.getItem('email') === "admin2000@gmail.com"){
+				if(localStorage.getItem('email') === "admin2000@gmail.com"){
 				NewSubject.on("click", function(){
 					window.location.href="/subject/create"
 				})
@@ -180,6 +180,7 @@ block content
 					alert('Admin performs this function');
 				})
 			}
+			
 
 
 	
