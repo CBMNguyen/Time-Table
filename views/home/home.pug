@@ -50,11 +50,13 @@ block content
 						if values.term
 							option.d-none(value= values.term)= values.term
 							option(value='none') none
+							option(value='1') 1
 							option(value='2') 2
 							option(value='hè') hè
 						else
 							option.d-none(value='hè') hè
 							option(value='none') none
+							option(value='1') 1
 							option(value='2') 2
 							option(value='hè') hè
 					
@@ -64,9 +66,10 @@ block content
 						if values.year
 							option.d-none(value= values.year)= values.year
 							option(value='2019-2020') 2019-2020
+							option(value='2019-2020') 2020-2021
 						else
 							option.d-none(value='2019-2020') 2019-2020
-							option(value='2019-2020') 2019-2020
+							option(value='2019-2020') 2020-2021
 						
 								
 					button.btn.btn-sm.btn-danger.mb-1.ml-3.mt-1

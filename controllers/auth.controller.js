@@ -28,5 +28,9 @@ module.exports.logout = (req, res) => {
 }
 
 module.exports.postLogin = (req, res) => {
+	var user = db.get('users').find({email: req.body.email}).value();
+	res.cookie('userId', user.id,{
+		signed: true
+	});
 	res.redirect('/');
 }

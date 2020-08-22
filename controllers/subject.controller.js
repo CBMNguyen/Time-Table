@@ -15,6 +15,7 @@ module.exports.postCreate = (req, res) => {
 }
 
 module.exports.view = (req, res) => {
+	// =========================================Pagination=================================================
 	id = req.params.id;
 	var page = parseInt(req.query.page) || 1;
 	var perPage = 1;
@@ -33,12 +34,14 @@ module.exports.view = (req, res) => {
 
 
 	var pageNext = 1;
-	if(page === db.get('subject').find({id: id}).get("news").value().length){
-		pageNext = db.get('subject').find({id: id}).get("news").value().length
-	}else if(db.get('subject').find({id: id}).get("news").value().length){
+	var newslength = db.get('subject').find({id: id}).get("news").value().length
+
+	if(page === newslength){
+		pageNext = newslength;
+	}else if(newslength){
 		pageNext = page + 1;
 	}
-
+// =============================================================================================================
 	res.render('subject/view', {
 		News: news,
 		subject: subject,

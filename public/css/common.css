@@ -114,7 +114,8 @@ nav{
 	background-attachment: visibility;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 91vh
+	background-position: center;
+	height: 100vh; 
 }
 .container-home marquee{
 	color: greenyellow;
@@ -282,5 +283,5 @@ nav{
 .volumn-icons:hover{
 	color: #34baeb;
 }
-
+/*==============================================ProJect===============================================*/
 

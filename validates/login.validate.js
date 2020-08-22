@@ -7,6 +7,21 @@ module.exports = (req, res, next) => {
 	var password = md5(req.body.password);
     var errors = [];
 	var user = db.get('users').find({email: email}).value();
+	
+	if(!email){
+		errors.push('Email is require.');
+	}
+
+	if(!req.body.password){
+		errors.push('Password is require.');
+	}
+
+	if(errors.length){
+		res.render('login/login', {
+			errors: errors
+		});
+		return;
+	}
 
 	if(!user){
 		errors = [
@@ -29,8 +44,5 @@ module.exports = (req, res, next) => {
 		})
 		return;
 	}
-	res.cookie('userId', user.id,{
-		signed: true
-	});
 	next();
 }

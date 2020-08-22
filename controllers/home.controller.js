@@ -1,13 +1,17 @@
 var db = require('../db');
 
 module.exports.home =  (req, res) => {
+
 	var today = new Date();
+
 	var day = today.getDay() + 1;
 	var hour = today.getHours();
 	var term = req.query.term;
 	var year = req.query.year;
+
 	var category = req.query.category;
 	var values = req.query;
+	
 // ================================Marquee====================================
 	var timetable = db.get('timetable').value();
 	var calendar1 = timetable[1].tkb.find((x)=>{

@@ -12,6 +12,7 @@ var authRouter = require('./Routers/auth.router');
 var subjectRouter = require('./Routers/subject.router');
 var homeRouter = require('./Routers/home.router');
 var timetableRouter = require('./Routers/timetable.router');
+var projectRouter = require('./Routers/project.router');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -24,6 +25,7 @@ app.use(cookieParser(process.env.SESSION_SECRETS));
 app.use('/auth', authRouter);
 app.use('/subject',loginMiddleWare, subjectRouter);
 app.use('/timetable',loginMiddleWare, timetableRouter);
+app.use('/project', loginMiddleWare, projectRouter);
 
-app.use('/', loginMiddleWare,homeRouter)
+app.use('/', loginMiddleWare, homeRouter)
 app.listen(port, () => console.log('start server completed!'));
